@@ -119,83 +119,120 @@ router.get("/:id", async (req, res) => {
   if (!json.id) {
     res
       .sendStatus(404)
-      .send({ success: false, message: "post no encontrado!" });
+      .send({ success: false, message: "proveedor no encontrado!" });
   } else {
     res.status(200).send({ success: true, data: json });
   }
 });
 
-router.post("/", async (req, res) => {
-  const { data } = req.body;
+// router.post("/", async (req, res) => {
+//   const { data } = req.body;
 
-  if (!data) {
-    res.status(400).send({ success: false, message: "No existe datos!" });
-  } else {
-    let post = await fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-    let json = await post.json();
+//   if (!data) {
+//     res.status(400).send({ success: false, message: "No existe datos!" });
+//   } else {
+//     let post = await fetch("https://jsonplaceholder.typicode.com/posts", {
+//       method: "POST",
+//       body: JSON.stringify(data),
+//       headers: {
+//         "Content-type": "application/json; charset=UTF-8",
+//       },
+//     });
+//     let json = await post.json();
 
-    res.status(200).send({ success: true, data: json });
-  }
-});
+//     res.status(200).send({ success: true, data: json });
+//   }
+// });
 
-router.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  const { data } = req.body;
+// router.put("/:id", async (req, res) => {
+//   const { id } = req.params;
+//   const { data } = req.body;
 
-  if (!data) {
-    res.status(400).send({ success: false, message: "No existe datos!" });
-  } else {
-    let post = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-    let json = await post.json();
+//   if (!data) {
+//     res.status(400).send({ success: false, message: "No existe datos!" });
+//   } else {
+//     let post = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+//       method: "PUT",
+//       body: JSON.stringify(data),
+//       headers: {
+//         "Content-type": "application/json; charset=UTF-8",
+//       },
+//     });
+//     let json = await post.json();
 
-    res.status(200).send({ success: true, data: json });
-  }
-});
+//     res.status(200).send({ success: true, data: json });
+//   }
+// });
 
-router.patch("/:id", async (req, res) => {
-  const { id } = req.params;
-  const { data } = req.body;
+// router.patch("/:id", async (req, res) => {
+//   const { id } = req.params;
+//   const { data } = req.body;
 
-  if (!data) {
-    res.status(400).send({ success: false, message: "No existe datos!" });
-  } else {
-    let post = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-    let json = await post.json();
+//   if (!data) {
+//     res.status(400).send({ success: false, message: "No existe datos!" });
+//   } else {
+//     let post = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+//       method: "PATCH",
+//       body: JSON.stringify(data),
+//       headers: {
+//         "Content-type": "application/json; charset=UTF-8",
+//       },
+//     });
+//     let json = await post.json();
 
-    res.status(200).send({ success: true, data: json });
-  }
-});
+//     res.status(200).send({ success: true, data: json });
+//   }
+// });
 
-router.delete("/:id", async (req, res) => {
-  const { id } = req.params;
+// router.delete("/:id", async (req, res) => {
+//   const { id } = req.params;
 
-  let response = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${id}`,
-    {
-      method: "DELETE",
-    }
-  );
-  let json = await response.json();
+//   let response = await fetch(
+//     `https://jsonplaceholder.typicode.com/posts/${id}`,
+//     {
+//       method: "DELETE",
+//     }
+//   );
+//   let json = await response.json();
+
+//   res.status(200).send({ success: true, data: json });
+// });
+
+// Brands
+
+const brands = [
+  {
+    id: 0,
+    name_en: "Sansumg Galaxy",
+    descript_en: "S1, s2, s3",
+    obs_en: "ninguna",
+  },
+  {
+    id: 1,
+    name_en: "One",
+    descript_en: "TB1, TB22",
+    obs_en: "Color negro y azul",
+  },
+];
+// get all brands
+router.get("/brands", async (req, res) => {
+  let json = brands;
 
   res.status(200).send({ success: true, data: json });
+});
+// get brand by id
+router.get("/brands/:id", async (req, res) => {
+  const { id } = req.params;
+
+  let json = brands.find((p) => p.id == id);
+
+  if (!json.id) {
+    res
+      .sendStatus(404)
+      .send({ success: false, message: "brand no encontrado!" });
+  } else {
+    res.status(200).send({ success: true, data: json });
+  }
 });
 
 module.exports = router;
