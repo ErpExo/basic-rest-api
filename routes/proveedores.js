@@ -30,6 +30,7 @@ const proveedores = [
       secondary_street: "c/ adrian jara",
       reference: "Edificio verde",
       phone: "0975106323",
+      cities_id_citie: 1,
     },
     companies: {
       descript_en: "Software company",
@@ -80,6 +81,7 @@ const proveedores = [
       secondary_street: "c/ adrian jara",
       reference: "Build Green",
       phone: "0975106323",
+      cities_id_citie: 0,
     },
     companies: {
       descript_en: "Book company",
